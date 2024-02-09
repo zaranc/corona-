@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dog - api</title>
+
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        #container{
+            text-align: center;
+            max-width: 600px;
+            margin: auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0. 0. 0. 0.1);
+            background-color: #fff;
+        }
+
+        h1 {
+            font-size: 36px;
+            text-transform: capitalize;
+            color: #333;
+            margin: 0;
+        }
+
+        #dogImage {
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0. 0. 0. 0.1);
+        }
+
+        #btn {
+            background: linear-gradient(to right, #ff3929, #d62a20);
+            color: #fff;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        #btn:hover {
+            background: linear-gradient(to right, #d62a20, #ff3929);
+        }
+    </style>
+</head>
+
+<body>
+        <div id="container">
+            <h1>dog-api</h1>
+            <div id="dogImage"></div>
+            <button id="btn" onclick="btn()">click & view Image</button>
+        </div>
+
+        <script>
+            async function btn(){
+                const res = await fetch("https://dog.ceo/api/breeds/image/random");
+                const data = await res.json();
+                console.log(data,"data");
+
+                function loadImage(){
+                    let img = document.createElement("img");
+                    img.src = data.message;
+                    img.width = 300;
+                    img.height = 300;
+                    document.getElementById("dogImage").innerHTML = '';
+                    document.getElementById("dogImage").appendChild(img);
+                }
+
+                loadImage();
+            }
+        </script>
+
+</body>
+</body>
+</html>
